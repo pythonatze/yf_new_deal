@@ -1,0 +1,4 @@
+[core]
+    remote = atze
+['remote "atze"']
+    url = https://github.com/pythonatze/YF_new_deal.git

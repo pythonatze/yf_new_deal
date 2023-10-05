@@ -1,3 +1,4 @@
 # Add patterns of files dvc should ignore, which could improve
 # the performance. Learn more at
 # https://dvc.org/doc/user-guide/dvcignore
+data/dcombined.csv data/dcombined.csv.dvc data/dzwischen.csv data/dzwischen.csv.dvc data/lcombined.csv data/lcombined.csv.dvc data/lzwischen.csv data/lzwischen.csv.dvc
