@@ -1,0 +1,4 @@
+schema: '2.0'
+stages:
+  ausfuhr:
+    cmd: python yf_new_deal.py
