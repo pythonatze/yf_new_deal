@@ -335,25 +335,32 @@ for symbol in stock_symbols:
     end_date = datetime.datetime.today()
     start_date = end_date - datetime.timedelta(days=50)
     ldata = yf.download(stock_symbol, start=start_date, end=end_date)
-    ldata[str(symbol)] = ldata['Close'].pct_change() * 100
+    if not ldata.empty:
+        print('Ldata', ldata)
+        ldata[str(symbol)] = ldata['Close'].pct_change() * 100
     #ldata[str(symbol)] = ldata['Close']
-    ldata.fillna(method='ffill').fillna(method='bfill')
+        ldata.fillna(method='ffill').fillna(method='bfill')
     #print(ldata)
 
 
     end_date = datetime.datetime.today()
     start_date = end_date - datetime.timedelta(days=50)
     ddata = yf.download(stock_symbol, start=start_date, end=end_date, interval='5m')
-    ddata[str(symbol)] = ddata['Close'].pct_change() * 100
-    #ddata[str(symbol)] = ddata['Close']
-    # Die 'Close'-Spalte (Schlusskurse) verwenden und prozentuale Veränderung berechnen
-    ddata.fillna(method='ffill').fillna(method='bfill')
+    if not ddata.empty:
+         ddata[str(symbol)] = ddata['Close'].pct_change() * 100
+         #ddata[str(symbol)] = ddata['Close']
+         # Die 'Close'-Spalte (Schlusskurse) verwenden und prozentuale Veränderung berechnen
+         ddata.fillna(method='ffill').fillna(method='bfill')
+         print(ddata.columns)
+
     #print(ddata)
 
 
     # Zeige die Daten mit den prozentualen Veränderungen an
-    spalten = [0,6]
+    spalten = [0,5]
+    print(ddata.columns)
     ddf = ddata.iloc[:, spalten]
+
     ddf.columns = [ str(symbol)+ '_Open', str(symbol) + '_proz']
     print(ddf)
     ldf = ldata.iloc[:, spalten]
